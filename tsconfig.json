@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.jsx"
-  ],
+, "utils/dbConfig.js", "utils/schema.js"  ],
   "exclude": [
     "node_modules"
   ]
