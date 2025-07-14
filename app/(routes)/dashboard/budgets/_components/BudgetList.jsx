@@ -1,14 +1,33 @@
-import React from 'react'
-import CreateBudget from './CreateBudget'
-
+"use client";
+import React, { useEffect, useState } from "react";
+import CreateBudget from "./CreateBudget";
+import { BudgetCard } from "./BudgetCard";
+import { getBudgetList } from "@/app/actions/userBudgets";
+import { useUser } from "@clerk/nextjs";
 const BudgetList = () => {
-  return (
-      <div className='mt-5'>
-          <div className='grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-              <CreateBudget />
-          </div> 
-    </div>
-  )
-}
+  const { user } = useUser();
+  const [budgetList, setBudgetList] = useState([]);
 
-export default BudgetList
+  const email = user?.primaryEmailAddress?.emailAddress;
+  useEffect(() => {
+    user && fetchBudgets();
+  }, []);
+
+  const fetchBudgets = async () => {
+    const result = await getBudgetList(email);
+    setBudgetList(result);
+  };
+  return (
+    <div className="mt-7  ">
+      <div className="grid  gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <CreateBudget refreshData={() => fetchBudgets()} />
+
+        {budgetList.map((budget, index) => (
+          <BudgetCard key={index} budget={budget} />
+        ))}
+      </div>
+      <div></div>
+    </div>
+  );
+};
+export default BudgetList;

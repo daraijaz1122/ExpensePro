@@ -3,7 +3,7 @@
 import { db } from '@/utils';
 import { Budgets, Expenses } from '@/utils/schema';
 import { eq, getTableColumns } from 'drizzle-orm';
-
+import { sql } from 'drizzle-orm';
 export async function getUserBudgets(userEmail) {
     if (!userEmail) return [];
  
@@ -31,8 +31,8 @@ export async function createBudget(data) {
 export async function getBudgetList(email) {
   const budgets = await db.select({
     ...getTableColumns(Budgets),
-    totalSpend: sql`sum(${Expenses.amount})`.mapWith(Number),
-    totalItem: sql`count(${Expenses.id})`.mapWith(Number)
+    totalSpend: sql `sum(${Expenses.amount})`.mapWith(Number),
+    totalItem: sql `count(${Expenses.id})`.mapWith(Number)
 
   }).from(Budgets)
     .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))

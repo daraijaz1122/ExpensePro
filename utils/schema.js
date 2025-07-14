@@ -1,5 +1,5 @@
 import { integer } from "drizzle-orm/gel-core";
-import { pgTable, serial, varchar } from "drizzle-orm/pg-core";
+import { numeric, pgTable, serial, varchar } from "drizzle-orm/pg-core";
 
 export const Budgets = pgTable("budgets", {
     id: serial("id").primaryKey(),
@@ -13,7 +13,7 @@ export const Budgets = pgTable("budgets", {
 export const Expenses = pgTable("expenses", {
     id: serial('id').primaryKey(),
     name: varchar('name').notNull(),
-    amount: varchar('amout').notNull(),
+    amount: numeric('amount').notNull(),
     budgetId: integer('budgetId').references(() => Budgets.id),
     createdAt: varchar('created_At').notNull()
 })
