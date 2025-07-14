@@ -32,8 +32,9 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.jsx"
-, "utils/dbConfig.js", "utils/schema.js"  ],
+    "**/*.jsx",
+     "**/*.js"
+, "utils/index.js", "utils/schema.js"  ],
   "exclude": [
     "node_modules"
   ]
