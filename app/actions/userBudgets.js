@@ -2,7 +2,7 @@
 
 import { db } from '@/utils';
 import { Budgets, Expenses } from '@/utils/schema';
-import { eq, getTableColumns } from 'drizzle-orm';
+import { desc, eq, getTableColumns ,and} from 'drizzle-orm';
 import { sql } from 'drizzle-orm';
 export async function getUserBudgets(userEmail) {
     if (!userEmail) return [];
@@ -37,6 +37,32 @@ export async function getBudgetList(email) {
   }).from(Budgets)
     .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
     .where(eq(Budgets.createdBy,email))
-    .groupBy(Budgets.id);
+    .groupBy(Budgets.id)
+    .orderBy(desc(Budgets.id));
   return budgets;
+}
+
+export async function getBudget(id,email) {
+  const budget = await db.select({
+    ...getTableColumns(Budgets),
+    totalSpend: sql `sum(${Expenses.amount})`.mapWith(Number),
+    totalItem: sql `count(${Expenses.id})`.mapWith(Number)
+
+  }).from(Budgets)
+    .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
+    .where(and(eq(Budgets.createdBy, email), eq(Budgets.id, id)))
+    .groupBy(Budgets.id)
+    
+  return budget;
+}
+
+export async function deleteBudgetWithExpenses(id) {
+  const deleteExpensesResult = await db.delete(Expenses)
+    .where(eq(Expenses.budgetId, id)).returning()
+  
+  if (deleteExpensesResult) {
+    const deleteBudgetResult = await db.delete(Budgets)
+      .where(eq(Budgets.id, id)).returning();
+    return deleteBudgetResult;
+  }
 }
