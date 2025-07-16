@@ -15,9 +15,11 @@ const Layout = ({ children }) => {
   }, [email]);
 
   const fetchUserBudgets = async () => {
-    const result = await getUserBudgets();
+    const result = await getUserBudgets(email);
     if (result.length === 0) {
       push("/dashboard/budgets");
+    } else {
+      push("/dashboard");
     }
   };
 

@@ -4,13 +4,13 @@ import { db } from '@/utils';
 import { Budgets, Expenses } from '@/utils/schema';
 import { desc, eq, getTableColumns ,and} from 'drizzle-orm';
 import { sql } from 'drizzle-orm';
-export async function getUserBudgets(userEmail) {
-    if (!userEmail) return [];
- 
+export async function getUserBudgets(email) {
+    if (!email) return [];
   const result = await db
     .select()
     .from(Budgets)
-    .where(eq(Budgets.createdBy, userEmail)); 
+    .where(eq(Budgets.createdBy,email)); 
+  
   return result;
 }
 

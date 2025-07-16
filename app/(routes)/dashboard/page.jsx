@@ -29,7 +29,12 @@ const page = () => {
   };
   return (
     <div className="p-8">
-      <h2 className="font-bold text-3xl">Hi ,{user?.fullName}</h2>
+      <h2 className="font-bold text-3xl">
+        Hi ,
+        {user?.primaryEmailAddress?.emailAddress === "guest123@gmail.com"
+          ? "Guest"
+          : user?.fullName}
+      </h2>
       <p className="text-gray-500 ">
         Here's what is happening with your budgets,Manage you expenses like a
         pro

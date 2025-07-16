@@ -7,13 +7,15 @@ import Sekeleton from "../../budgets/_components/Sekeleton";
 import AddExpense from "../_components/AddExpense";
 import { getExpenses } from "@/app/actions/userExpenses";
 import ExpenseListTable from "../_components/ExpenseListTable";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import DeleteBudget from "../_components/DeleteBudget";
 import UpdateBudget from "../_components/UpdateBudget";
+import { ArrowLeft } from "lucide-react";
 const Page = () => {
   const { user } = useUser();
   const [data, setData] = useState([]);
   const [expenses, setExpenses] = useState([]);
+  const back = useRouter().back;
 
   const params = useParams();
   const id = params.id;
@@ -32,13 +34,20 @@ const Page = () => {
 
   return (
     <div className="p-10">
-      <h2 className="text-2xl font-bold flex justify-between items-center">
-        My Expenses
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold flex items-center ">
+          <ArrowLeft
+            onClick={() => back("/dashboard/budgets")}
+            className="font-bold mr-2 text-lg cursor-pointer"
+          />
+          My Expenses
+        </h2>
         <div className="flex  items-center gap-2">
           <UpdateBudget data={data} refreshData={() => fetchBudget()} />
           <DeleteBudget budgetId={id} />
         </div>
-      </h2>
+      </div>
+
       <div className="mt-2 grid gap-5 grid-cols-1 md:grid-cols-2 ">
         {data ? <BudgetCard budget={data} /> : <Sekeleton />}
 
