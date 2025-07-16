@@ -66,3 +66,12 @@ export async function deleteBudgetWithExpenses(id) {
     return deleteBudgetResult;
   }
 }
+export async function updateBudget(data) {
+  const { budgetTitle, budgetAmount, selectedEmoji,id } = data;
+  const response = await db.update(Budgets).set({
+    name: budgetTitle,
+    amount: budgetAmount,
+    icon:selectedEmoji
+  }).where(eq(Budgets.id, id)).returning()
+  return response
+}

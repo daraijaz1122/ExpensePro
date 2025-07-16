@@ -29,7 +29,7 @@ const ExpenseListTable = ({ expensesList, refreshData }) => {
           <h2>
             <Trash
               onClick={() => handleDeleteExpense(expense)}
-              className="text-red-600 cursor-pointer"
+              className="text-red-600 hover:text-indigo-600 cursor-pointer"
             />
           </h2>
         </div>

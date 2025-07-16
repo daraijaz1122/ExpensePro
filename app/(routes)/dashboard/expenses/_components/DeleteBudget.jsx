@@ -28,7 +28,10 @@ const DeleteBudget = ({ budgetId }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="flex gap-2 cursor-pointer " variant="destructive">
+        <Button
+          className="flex gap-2 hover:bg-red-400 cursor-pointer "
+          variant="destructive"
+        >
           <Trash />
           Delete
         </Button>
@@ -42,8 +45,13 @@ const DeleteBudget = ({ budgetId }) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDeleteBudget}>
+          <AlertDialogCancel className="cursor-pointer">
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction
+            className="cursor-pointer"
+            onClick={handleDeleteBudget}
+          >
             Continue
           </AlertDialogAction>
         </AlertDialogFooter>

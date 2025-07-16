@@ -49,9 +49,9 @@ const AddExpense = ({ budgetId, refreshData }) => {
         onClick={handleAddExpense}
         variant="outline"
         disabled={!(expenseName && expenseAmount)}
-        className="w-full cursor-pointer mt-3  bg-indigo-600 text-white text-lg "
+        className="w-full cursor-pointer mt-3  bg-indigo-600 text-white text-md "
       >
-        Add Expense
+        Add New Expense
       </Button>
     </div>
   );

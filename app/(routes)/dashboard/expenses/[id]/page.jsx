@@ -11,6 +11,7 @@ import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import DeleteBudget from "../_components/DeleteBudget";
+import UpdateBudget from "../_components/UpdateBudget";
 const Page = () => {
   const { user } = useUser();
   const [data, setData] = useState([]);
@@ -35,7 +36,10 @@ const Page = () => {
     <div className="p-10">
       <h2 className="text-2xl font-bold flex justify-between items-center">
         My Expenses
-        <DeleteBudget budgetId={id} />
+        <div className="flex  items-center gap-2">
+          <UpdateBudget data={data} refreshData={() => fetchBudget()} />
+          <DeleteBudget budgetId={id} />
+        </div>
       </h2>
       <div className="mt-2 grid gap-5 grid-cols-1 md:grid-cols-2 ">
         {data ? <BudgetCard budget={data} /> : <Sekeleton />}
