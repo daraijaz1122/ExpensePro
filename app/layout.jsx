@@ -1,12 +1,11 @@
-import {Outfit,Inter} from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 
-
 const outfit = Outfit({
   subsets: ["latin"],
-})
+});
 export const metadata = {
   title: "expense tracker",
   description: "create, track and manage your expenses easily",
@@ -15,14 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body
-        className={outfit.className}>
-         
+      <html lang="en">
+        <body className={outfit.className}>
           {children}
-           <Toaster/>
-      </body>
+          <Toaster />
+        </body>
       </html>
-      </ClerkProvider>
+    </ClerkProvider>
   );
 }

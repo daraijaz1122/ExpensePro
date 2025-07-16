@@ -8,8 +8,6 @@ import AddExpense from "../_components/AddExpense";
 import { getExpenses } from "@/app/actions/userExpenses";
 import ExpenseListTable from "../_components/ExpenseListTable";
 import { useParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Trash } from "lucide-react";
 import DeleteBudget from "../_components/DeleteBudget";
 import UpdateBudget from "../_components/UpdateBudget";
 const Page = () => {

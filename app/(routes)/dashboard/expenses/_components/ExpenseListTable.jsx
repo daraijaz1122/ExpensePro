@@ -18,7 +18,7 @@ const ExpenseListTable = ({ expensesList, refreshData }) => {
         <h2>Date</h2>
         <h2>Action</h2>
       </div>
-      {expensesList.map((expense, index) => (
+      {expensesList.map((expense) => (
         <div
           key={expense.id}
           className="grid grid-cols-4  bg-slate-100 shadow-sm mt-1 rounded-md p-2 "

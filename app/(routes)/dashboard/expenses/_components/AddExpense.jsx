@@ -4,14 +4,17 @@ import { Button } from "@/components/ui/button";
 import { addExpense } from "@/app/actions/userExpenses";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
+import { Loader } from "lucide-react";
 
 const AddExpense = ({ budgetId, refreshData }) => {
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
   const { user } = useUser();
+  const [loading, setLoading] = useState(false);
   const email = user?.primaryEmailAddress?.emailAddress;
 
   const handleAddExpense = async () => {
+    setLoading(true);
     const data = {
       expenseName,
       expenseAmount,
@@ -19,7 +22,11 @@ const AddExpense = ({ budgetId, refreshData }) => {
       email,
     };
     const result = await addExpense(data);
+
     if (result) {
+      setExpenseAmount("");
+      setExpenseAmount("");
+      setLoading(false);
       refreshData();
       toast("Expense Added Sucessfully");
     }
@@ -51,7 +58,7 @@ const AddExpense = ({ budgetId, refreshData }) => {
         disabled={!(expenseName && expenseAmount)}
         className="w-full cursor-pointer mt-3  bg-indigo-600 text-white text-md "
       >
-        Add New Expense
+        {loading ? <Loader /> : "Add New Expense"}
       </Button>
     </div>
   );

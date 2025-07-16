@@ -8,7 +8,7 @@ export const BudgetCard = ({ budget }) => {
   };
   return (
     <Link href={"/dashboard/expenses/" + budget?.id}>
-      <div className="p-5 border hover:shadow-md cursor-pointer hover:bg-gray-50 rounded-lg  ">
+      <div className="p-5 border shadow-md hover:shadow-md cursor-pointer hover:bg-gray-50 rounded-lg  ">
         <div className="flex gap-2 items-center justify-between">
           <div className="flex gap-2 items-center">
             <h2 className="text-2xl p-3 b-slate-200 rounded-full">

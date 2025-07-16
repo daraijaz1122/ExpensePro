@@ -40,7 +40,14 @@ const SideNav = () => {
   ];
   return (
     <div className="h-screen p-5 mx-auto border shadow-sm">
-      <Image width={160} height={100} alt="logo" src={"/logo.png"} />
+      <Image
+        onClick={() => push("/")}
+        className="cursor-pointer"
+        width={160}
+        height={100}
+        alt="logo"
+        src={"/logo.png"}
+      />
 
       <div className="mt-5">
         {menuList.map((menu, index) => (
