@@ -15,7 +15,7 @@ const page = () => {
 
   useEffect(() => {
     user && fetchUserBudgets();
-  }, []);
+  }, [user]);
 
   const fetchUserBudgets = async () => {
     const response = await getBudgetList(

@@ -14,7 +14,7 @@ const Hero = () => {
           </h1>
 
           <p className="mt-4 text-base text-pretty text-gray-700 sm:text-lg/relaxed">
-            Start Creating your budget ans save ton of money
+            Start Creating your budget and save ton of money
           </p>
 
           <div className="mt-4 flex justify-center gap-4 sm:mt-6">

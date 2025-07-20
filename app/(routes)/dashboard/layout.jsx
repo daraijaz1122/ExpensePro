@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
   const email = user?.primaryEmailAddress?.emailAddress;
   useEffect(() => {
     user && fetchUserBudgets();
-  }, [email]);
+  }, []);
 
   const fetchUserBudgets = async () => {
     const result = await getUserBudgets(email);

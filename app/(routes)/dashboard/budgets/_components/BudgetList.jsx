@@ -13,7 +13,7 @@ const BudgetList = () => {
   const email = user?.primaryEmailAddress?.emailAddress;
   useEffect(() => {
     user && fetchBudgets();
-  }, [email]);
+  }, []);
 
   const fetchBudgets = async () => {
     const result = await getBudgetList(email);
