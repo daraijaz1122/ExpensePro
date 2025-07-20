@@ -7,7 +7,7 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 export const metadata = {
-  title: "expense tracker",
+  title: "expensepro",
   description: "create, track and manage your expenses easily",
 };
 
